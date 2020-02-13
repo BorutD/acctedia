@@ -14,12 +14,12 @@ import { SET_AUTHENTICATED } from "./redux/types";
 import { logoutUser } from "./redux/actions/userActions";
 
 // Pages
-import home from "./pages/home";
-import login from "./pages/login";
-import signup from "./pages/signup";
+import home from "./components/pages/home";
+import login from "./components/pages/login";
+import signup from "./components/pages/signup";
 
 // Components
-import Navbar from "./components/layout/Navbar";
+import Navbar from "./components/layout/Navbar/Navbar";
 import AuthRoute from "./util/AuthRoute";
 import axios from "axios";
 

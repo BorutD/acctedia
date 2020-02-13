@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
-import { logoutUser } from "../../redux/actions/userActions";
+import { logoutUser } from "../../../redux/actions/userActions";
 
 // Material UI
 import AppBar from "@material-ui/core/AppBar";
