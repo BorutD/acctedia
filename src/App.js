@@ -17,6 +17,9 @@ import { logoutUser } from "./redux/actions/userActions";
 import home from "./components/pages/home";
 import login from "./components/pages/login";
 import signup from "./components/pages/signup";
+import projects from "./views/Projects";
+import users from "./views/Users";
+import calendar from "./views/Calendar";
 
 // Components
 import Navbar from "./components/layout/Navbar/Navbar";
@@ -50,6 +53,9 @@ class App extends Component {
                 <Route exact path="/" component={home} />
                 <AuthRoute exact path="/login" component={login} />
                 <AuthRoute exact path="/signup" component={signup} />
+                <Route exact path="/projects" component={projects} />
+                <Route exact path="/users" component={users} />
+                <Route exact path="/calendar" component={calendar} />
               </Switch>
             </div>
           </Router>

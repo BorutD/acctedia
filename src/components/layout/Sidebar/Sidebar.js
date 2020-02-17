@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import withStyles from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
 
 // Material UI
+import withStyles from "@material-ui/core/styles/withStyles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+// import ListItemText from "@material-ui/core/ListItemText";
+import Button from "@material-ui/core/Button";
 // import ListItemIcon from "@material-ui/core/ListItemIcon";
 // import HomeIcon from "@material-ui/icons/Home";
 
@@ -36,9 +38,9 @@ class Sidebar extends Component {
       "Dashboard",
       "Projects",
       "Users",
-      "Calendar",
-      "Board",
-      "Settings"
+      "Calendar"
+      // "Board",
+      // "Settings"
     ];
     return (
       <div className={classes.root}>
@@ -53,14 +55,34 @@ class Sidebar extends Component {
         >
           <div className={classes.toolbar} />
           <List>
-            {sidebarContent.map((text, index) => (
+            {/* {sidebarContent.map((text, index) => (
               <ListItem button key={text}>
-                {/* <ListItemIcon>
+                <ListItemIcon>
                   <HomeIcon />
-                </ListItemIcon> */}
+                </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
-            ))}
+            ))} */}
+            <ListItem>
+              <Button color="inherit" component={Link} to="/">
+                Dashboard
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button color="inherit" component={Link} to="/projects">
+                Projects
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button color="inherit" component={Link} to="/users">
+                Users
+              </Button>
+            </ListItem>
+            <ListItem>
+              <Button color="inherit" component={Link} to="/calendar">
+                Calendar
+              </Button>
+            </ListItem>
           </List>
         </Drawer>
       </div>

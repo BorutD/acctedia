@@ -26,8 +26,6 @@ class home extends Component {
       user: { loading, authenticated }
     } = this.props;
 
-    // console.log("AUTHENTICATED: ", authenticated);
-
     let homePage = !loading ? (
       authenticated ? (
         <div className={classes.header}>
