@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import Sidebar from "../layout/Sidebar/Sidebar";
 
 // Material UI
 import Button from "@material-ui/core/Button";
@@ -29,7 +28,6 @@ class home extends Component {
     let homePage = !loading ? (
       authenticated ? (
         <div className={classes.header}>
-          <Sidebar />
           <h1>Dashboard</h1>
         </div>
       ) : (

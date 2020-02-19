@@ -2,6 +2,9 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+// Components
+import Sidebar from "../Sidebar/Sidebar";
+
 // Redux
 import { connect } from "react-redux";
 import { logoutUser } from "../../../redux/actions/userActions";
@@ -21,30 +24,33 @@ class Navbar extends Component {
   render() {
     const { authenticated } = this.props;
     return (
-      <AppBar>
-        <Toolbar className="nav-container">
-          {authenticated ? (
-            <Fragment>
-              <Button color="inherit" component={Link} to="/">
-                Home
-              </Button>
-              <Button onClick={this.handleLogout}>Logout</Button>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Button color="inherit" component={Link} to="/login">
-                Login
-              </Button>
-              <Button color="inherit" component={Link} to="/">
-                Home
-              </Button>
-              <Button color="inherit" component={Link} to="signup">
-                Signup
-              </Button>
-            </Fragment>
-          )}
-        </Toolbar>
-      </AppBar>
+      <div>
+        <AppBar style={{ zIndex: 1 }}>
+          <Toolbar className="nav-container">
+            {authenticated ? (
+              <Fragment>
+                <Button color="inherit" component={Link} to="/">
+                  Home
+                </Button>
+                <Button onClick={this.handleLogout}>Logout</Button>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Button color="inherit" component={Link} to="/login">
+                  Login
+                </Button>
+                <Button color="inherit" component={Link} to="/">
+                  Home
+                </Button>
+                <Button color="inherit" component={Link} to="signup">
+                  Signup
+                </Button>
+              </Fragment>
+            )}
+          </Toolbar>
+        </AppBar>
+        {authenticated ? <Sidebar style={{ zIndex: 0 }} /> : ""}
+      </div>
     );
   }
 }

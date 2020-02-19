@@ -20,6 +20,7 @@ import signup from "./components/pages/signup";
 import projects from "./views/Projects";
 import users from "./views/Users";
 import calendar from "./views/Calendar";
+import settings from "./views/Settings";
 
 // Components
 import Navbar from "./components/layout/Navbar/Navbar";
@@ -56,6 +57,7 @@ class App extends Component {
                 <Route exact path="/projects" component={projects} />
                 <Route exact path="/users" component={users} />
                 <Route exact path="/calendar" component={calendar} />
+                <Route exact path="/settings" component={settings} />
               </Switch>
             </div>
           </Router>
