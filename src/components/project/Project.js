@@ -22,3 +22,8 @@ Project.propTypes = {
 };
 
 export default Project;
+
+/*
+You need a table:
+Project   Category  Tasks   Actions   Status
+*/

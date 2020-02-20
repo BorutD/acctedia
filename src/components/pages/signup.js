@@ -3,7 +3,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-// MUI Stuff
+// Material UI
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";

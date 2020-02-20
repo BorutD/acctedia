@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import withStyles from "@material-ui/core/styles/withStyles";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import themeFile from "../../../util/theme";
 
 // Components
 import Sidebar from "../Sidebar/Sidebar";
@@ -14,6 +17,14 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 
+const theme = createMuiTheme(themeFile);
+
+const styles = {
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
+  }
+};
+
 // Icons => TODO!!!
 
 class Navbar extends Component {
@@ -22,10 +33,10 @@ class Navbar extends Component {
   };
 
   render() {
-    const { authenticated } = this.props;
+    const { authenticated, classes } = this.props;
     return (
       <div>
-        <AppBar style={{ zIndex: 1 }}>
+        <AppBar className={classes.appBar}>
           <Toolbar className="nav-container">
             {authenticated ? (
               <Fragment>
@@ -49,7 +60,7 @@ class Navbar extends Component {
             )}
           </Toolbar>
         </AppBar>
-        {authenticated ? <Sidebar style={{ zIndex: 0 }} /> : ""}
+        {authenticated ? <Sidebar /> : ""}
       </div>
     );
   }
@@ -68,4 +79,7 @@ const mapStateToProps = state => ({
   authenticated: state.user.authenticated
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(Navbar);
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(withStyles(styles)(Navbar));
