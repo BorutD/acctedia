@@ -11,6 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 // Redux
 import { connect } from "react-redux";
+import { postProject, clearErrors } from "../../redux/actions/dataActions";
 
 const styles = {
   form: {
@@ -44,9 +45,20 @@ class NewProject extends Component {
     super();
     this.state = {
       projectTitle: "",
+      projectDescription: "",
       errors: {}
     };
   }
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.postProject({ projectName: this.state.projectTitle });
+    // TODO: add project description
+  };
   render() {
     const {
       classes,
@@ -65,22 +77,22 @@ class NewProject extends Component {
               <TextField
                 id="projectTitle"
                 name="projectTitle"
-                type="projectTitle"
+                type="text"
                 label="Project title"
-                className={classes.textField}
-                helperText={errors.projectTitle}
                 error={errors.projectTitle ? true : false}
-                value={this.state.projectTitle}
+                helperText={errors.projectTitle}
+                className={classes.textField}
                 onChange={this.handleChange}
                 fullWidth
               />
               <TextField
                 id="projectDescription"
                 name="projectDescription"
-                type="projectDescription"
+                type="text"
                 label="Project description"
                 multiline
                 rows="5"
+                onChange={this.handleChange}
                 fullWidth
               />
               <Button
@@ -108,6 +120,8 @@ class NewProject extends Component {
 }
 
 NewProject.propTypes = {
+  postProject: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   UI: PropTypes.object.isRequired
 };
 
@@ -115,4 +129,6 @@ const mapStateToProps = state => ({
   UI: state.UI
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(NewProject));
+export default connect(mapStateToProps, { postProject, clearErrors })(
+  withStyles(styles)(NewProject)
+);

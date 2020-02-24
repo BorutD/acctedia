@@ -1,4 +1,4 @@
-import { SET_PROJECTS, LOADING_DATA } from "../types";
+import { SET_PROJECTS, LOADING_DATA, POST_PROJECT } from "../types";
 
 const initialState = {
   projects: [],
@@ -18,6 +18,11 @@ export default function(state = initialState, action) {
         ...state,
         projects: action.payload,
         loading: false
+      };
+    case POST_PROJECT:
+      return {
+        ...state,
+        projects: [action.payload, ...state.project]
       };
     default:
       return state;
