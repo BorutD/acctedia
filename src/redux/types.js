@@ -14,3 +14,4 @@ export const STOP_LOADING_UI = "STOP_LOADING_UI";
 // Data reducer types
 export const SET_PROJECTS = "SET_PROJECTS";
 export const POST_PROJECT = "POST_PROJECT";
+export const DELETE_PROJECT = "DELETE_PROJECT";

@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
     case POST_PROJECT:
       return {
         ...state,
-        projects: [action.payload, ...state.project]
+        projects: [action.payload, ...state.projects]
       };
     default:
       return state;

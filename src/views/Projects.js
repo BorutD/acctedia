@@ -35,6 +35,7 @@ class Projects extends Component {
     this.state = {
       anchorEl: null
     };
+    this.handleDelete = this.handleDelete.bind(this);
   }
   receivedProjects = [
     {
@@ -61,6 +62,10 @@ class Projects extends Component {
   componentDidMount() {
     // this.props.getProjects();
   }
+
+  handleDelete = project => {
+    console.log("DELETING", project);
+  };
 
   render() {
     // const { projects, loading } = this.props.data;
@@ -145,7 +150,9 @@ class Projects extends Component {
                     >
                       <MenuItem onClick={handleClose}>Edit</MenuItem>
                       <MenuItem onClick={handleClose}>Archive</MenuItem>
-                      <MenuItem onClick={handleClose}>Delete</MenuItem>
+                      <MenuItem onClick={this.handleDelete.bind(this, project)}>
+                        Delete
+                      </MenuItem>
                     </Menu>
                   </TableCell>
                 </TableRow>

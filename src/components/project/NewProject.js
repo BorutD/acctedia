@@ -96,11 +96,11 @@ class NewProject extends Component {
     });
   };
   render() {
+    const { errors } = this.state;
     const {
       classes,
       UI: { loading }
     } = this.props;
-    const { errors } = this.state;
     return (
       <div>
         <Grid container className={classes.form}>

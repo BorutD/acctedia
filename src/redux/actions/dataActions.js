@@ -4,7 +4,8 @@ import {
   LOADING_UI,
   POST_PROJECT,
   CLEAR_ERRORS,
-  SET_ERRORS
+  SET_ERRORS,
+  DELETE_PROJECT
 } from "../types";
 import axios from "axios";
 
@@ -35,7 +36,8 @@ export const postProject = newProject => dispatch => {
         type: POST_PROJECT,
         payload: res.data
       });
-      dispatch(clearErrors());
+      // dispatch(clearErrors());
+      dispatch({ type: CLEAR_ERRORS });
     })
     .catch(err => {
       dispatch({
@@ -43,6 +45,15 @@ export const postProject = newProject => dispatch => {
         payload: err.response.data
       });
     });
+};
+
+export const deleteProject = projectId => dispatch => {
+  axios
+    .delete(`/projects/${projectId}`)
+    .then(() => {
+      dispatch({ type: DELETE_PROJECT, payload: projectId });
+    })
+    .catch(err => console.log(err));
 };
 
 export const clearErrors = () => dispatch => {
