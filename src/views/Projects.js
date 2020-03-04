@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { getProjects } from "../redux/actions/dataActions";
+import { getProjects, deleteProject } from "../redux/actions/dataActions";
 
 // import Project from "../components/project/Project";
 
@@ -60,15 +60,16 @@ class Projects extends Component {
     }
   ];
   componentDidMount() {
-    // this.props.getProjects();
+    this.props.getProjects();
   }
 
   handleDelete = project => {
-    console.log("DELETING", project);
+    this.handleClose();
+    this.props.deleteProject(project.projectId);
   };
 
   render() {
-    // const { projects, loading } = this.props.data;
+    const { projects, loading } = this.props.data;
     const { classes } = this.props;
 
     const handleClick = event => {
@@ -108,25 +109,48 @@ class Projects extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* {!loading ? (
-              projects.map(project => (
-                <TableRow key={project.projectName}>
-                  <TableCell component="th" scope="row">
-                    {project.projectName}
-                  </TableCell>
-                  <TableCell align="right">{project.createdAt}</TableCell>
-                  <TableCell align="right">{project.adminHandle}</TableCell>
-                  <TableCell align="right">
-                    <MoreVert />
-                  </TableCell>
+              {!loading ? (
+                projects.map((project, index) => {
+                  return (
+                    <TableRow key={index}>
+                      <TableCell component="th" scope="row">
+                        {project.title}
+                      </TableCell>
+                      <TableCell align="right">{project.createdAt}</TableCell>
+                      <TableCell align="right">{project.adminHandle}</TableCell>
+                      <TableCell align="right">
+                        <Button
+                          aria-controls="simple-menu"
+                          aria-haspopup="true"
+                          onClick={handleClick}
+                        >
+                          <MoreVert />
+                        </Button>
+                        <Menu
+                          id="simple-menu"
+                          anchorEl={this.state.anchorEl}
+                          keepMounted
+                          open={Boolean(this.state.anchorEl)}
+                          onClose={handleClose}
+                        >
+                          <MenuItem onClick={handleClose}>Edit</MenuItem>
+                          <MenuItem onClick={handleClose}>Archive</MenuItem>
+                          <MenuItem
+                            onClick={this.handleDelete.bind(this, project)}
+                          >
+                            Delete
+                          </MenuItem>
+                        </Menu>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })
+              ) : (
+                <TableRow>
+                  <TableCell align="center">Loading...</TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell align="center">Loading...</TableCell>
-              </TableRow>
-            )} */}
-              {this.receivedProjects.map(project => (
+              )}
+              {/* {this.receivedProjects.map(project => (
                 <TableRow key={project.projectName}>
                   <TableCell component="th" scope="row">
                     {project.projectName}
@@ -156,7 +180,7 @@ class Projects extends Component {
                     </Menu>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))} */}
             </TableBody>
           </Table>
         </TableContainer>
@@ -167,6 +191,7 @@ class Projects extends Component {
 
 Projects.propTypes = {
   getProjects: PropTypes.func.isRequired,
+  deleteProject: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired
 };
 
@@ -174,6 +199,6 @@ const mapStateToProps = state => ({
   data: state.data
 });
 
-export default connect(mapStateToProps, { getProjects })(
+export default connect(mapStateToProps, { getProjects, deleteProject })(
   withStyles(styles)(Projects)
 );

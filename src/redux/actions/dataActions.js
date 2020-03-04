@@ -36,7 +36,6 @@ export const postProject = newProject => dispatch => {
         type: POST_PROJECT,
         payload: res.data
       });
-      // dispatch(clearErrors());
       dispatch({ type: CLEAR_ERRORS });
     })
     .catch(err => {
@@ -49,7 +48,7 @@ export const postProject = newProject => dispatch => {
 
 export const deleteProject = projectId => dispatch => {
   axios
-    .delete(`/projects/${projectId}`)
+    .delete(`/project/${projectId}`)
     .then(() => {
       dispatch({ type: DELETE_PROJECT, payload: projectId });
     })
